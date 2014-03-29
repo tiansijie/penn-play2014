@@ -37,8 +37,9 @@ public class FireControl : MonoBehaviour {
 			lightGameObject.transform.localPosition = new Vector3(0, 0, i*lightSpacing);
 			lightGameObject.AddComponent<Light>();
 			lightGameObject.light.color = new Color(255, 156, 48);
-			lightGameObject.light.color /= 255;
-			lightGameObject.light.range = 10;
+			lightGameObject.light.color /= 255.0f;
+			lightGameObject.light.range = 5.0f * (i+1.0f);
+			lightGameObject.light.intensity = 0.5f / (i+1.0f);
 			lightGameObject.SetActive(false);
 			lightSources[i] = lightGameObject;
 		}	
