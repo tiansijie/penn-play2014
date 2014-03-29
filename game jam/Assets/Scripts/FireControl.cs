@@ -16,6 +16,7 @@ public class FireControl : MonoBehaviour {
 
 	private int nextLightToActivate;
 	private int nextLightToDeactivate;
+	public AudioSource soundPlayer;
 
 	// Use this for initialization
 	void Start () {
@@ -78,5 +79,13 @@ public class FireControl : MonoBehaviour {
 	{
 		foreach(ParticleEmitter emitter in particleEmitters)
 			emitter.emit = value;
+		
+		if(value){
+			soundPlayer.Play();
+			soundPlayer.loop = true;
+		}
+		else{
+			soundPlayer.Stop();
+		}
 	}
 }
