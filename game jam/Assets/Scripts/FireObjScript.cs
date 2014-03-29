@@ -54,7 +54,8 @@ public class FireObjScript : MonoBehaviour {
 	{
 		while(true && insSmallFire != null)
 		{
-			ReduceLightIntesity(1f/10f);
+			Light light = insSmallFire.transform.GetComponentInChildren<Light>();
+			ReduceLightIntesity(light.intensity/10f);
 			yield return new WaitForSeconds(waitingTime);
 		}
 	}
