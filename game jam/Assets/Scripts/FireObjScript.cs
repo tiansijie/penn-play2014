@@ -6,6 +6,7 @@ public class FireObjScript : MonoBehaviour {
 
 	public GameObject smallFire;
 	public float fireTime = 10f;
+	public Material burnedBox;
 
 	private bool isLit = false;
 	private GameObject insSmallFire;
@@ -25,7 +26,7 @@ public class FireObjScript : MonoBehaviour {
 				ghostshaowscript.setActivate(true);
 				insSmallFire = Instantiate(smallFire, this.transform.position, Quaternion.identity) as GameObject;
 				Invoke("StopEmitter", fireTime - 2f);
-				Invoke("StopShadow", fireTime);
+				Invoke("Stop", fireTime);
 				StartCoroutine(CoroutineFunction(fireTime / 10f));
 				Destroy(insSmallFire, fireTime);
 				isLit = true;
@@ -34,9 +35,10 @@ public class FireObjScript : MonoBehaviour {
 	}
 
 
-	void StopShadow()
+	void Stop()
 	{
 		ghostshaowscript.setActivate(false);
+		this.gameObject.renderer.material = burnedBox;
 	}
 
 	void StopEmitter()
@@ -68,7 +70,6 @@ public class FireObjScript : MonoBehaviour {
 			light.intensity -= value;
 		}
 	}
-
 
 
 	// Update is called once per frame
