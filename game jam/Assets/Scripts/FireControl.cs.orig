@@ -20,10 +20,15 @@ public class FireControl : MonoBehaviour {
 	private int nextLightToActivate = 0;
 	private int nextLightToDeactivate = 0;
 
-
+<<<<<<< HEAD
+	private int nextLightToActivate;
+	private int nextLightToDeactivate;
 	public AudioSource soundGunStartPlayer;
 	public AudioSource soundGunKeepShotting;
-
+=======
+	public AudioSource soundPlayer;
+	
+>>>>>>> 8f673d161fab901e4c8196115f399f1c274ee50f
 
 	// Use this for initialization
 	void Start () {
