@@ -11,7 +11,7 @@ public class GhostShadowScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		parentLocation = this.transform.parent.transform.position;
-		Vector3 objPos = new Vector3(parentLocation.x, 0.3f, parentLocation.z);
+		Vector3 objPos = new Vector3(parentLocation.x, 0.1f, parentLocation.z);
 		this.transform.position = objPos;
 		getRandomDirection();
 	}
@@ -34,7 +34,9 @@ public class GhostShadowScript : MonoBehaviour {
 			this.renderer.enabled = true;
 			Vector3 currPos = transform.position;
 			currPos += ranDirection * Time.deltaTime * shadowSpeed;
-			Vector3 scaleGhost = new Vector3(Mathf.Abs(currPos.x - parentLocation.x) + 1f, 0f, Mathf.Abs(currPos.z - parentLocation.z) + 1f);
+			Vector3 scaleGhost = new Vector3(1f, 
+			                                 Mathf.Abs(currPos.y - parentLocation.y) + 1f,	
+			                                 1f);
 			this.transform.localScale = scaleGhost;
 			this.transform.position = currPos;
 			Vector3 distoParent = new Vector3(currPos.x - parentLocation.x, 0f, currPos.z - parentLocation.z);
