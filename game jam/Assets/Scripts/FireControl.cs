@@ -102,12 +102,6 @@ public class FireControl : MonoBehaviour {
 
 	}
 
-	void keepShottingSound()
-	{
-		soundGunStartPlayer.Stop();
-		soundGunKeepShotting.Play();
-		soundGunKeepShotting.loop = true;
-	}
 
 	void toggleActiveFire(bool value)
 	{
@@ -115,9 +109,8 @@ public class FireControl : MonoBehaviour {
 			emitter.emit = value;
 		
 		if(value){
-			soundGunStartPlayer.Play();
-			soundGunStartPlayer.loop = false;
-			Invoke("keepShottingSound", 0.4f);
+			soundGunKeepShotting.Play();
+			soundGunKeepShotting.loop = true;
 		}
 		else{
 			soundGunKeepShotting.Stop();
