@@ -16,7 +16,8 @@ public class FireControl : MonoBehaviour {
 
 	private int nextLightToActivate;
 	private int nextLightToDeactivate;
-	public AudioSource soundPlayer;
+	public AudioSource soundGunStartPlayer;
+	public AudioSource soundGunKeepShotting;
 
 	// Use this for initialization
 	void Start () {
@@ -75,17 +76,25 @@ public class FireControl : MonoBehaviour {
 
 	}
 
+	void keepShottingSound()
+	{
+		soundGunStartPlayer.Stop();
+		soundGunKeepShotting.Play();
+		soundGunKeepShotting.loop = true;
+	}
+
 	void toggleActiveFire(bool value)
 	{
 		foreach(ParticleEmitter emitter in particleEmitters)
 			emitter.emit = value;
 		
 		if(value){
-			soundPlayer.Play();
-			soundPlayer.loop = true;
+			soundGunStartPlayer.Play();
+			soundGunStartPlayer.loop = false;
+			Invoke("keepShottingSound", 0.4f);
 		}
 		else{
-			soundPlayer.Stop();
+			soundGunKeepShotting.Stop();
 		}
 	}
 }
