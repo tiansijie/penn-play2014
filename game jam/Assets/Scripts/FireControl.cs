@@ -11,6 +11,8 @@ public class FireControl : MonoBehaviour {
 	private Component[] particleEmitters;
 	private Component[] lightSources;
 
+	public AudioSource soundPlayer;
+
 	// Use this for initialization
 	void Start () {
 		fireInstance = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
@@ -43,6 +45,12 @@ public class FireControl : MonoBehaviour {
 			emitter.emit = value;
 		foreach(Light lightSource in lightSources)
 			lightSource.enabled = value;
-
+		if(value){
+			soundPlayer.Play();
+			soundPlayer.loop = true;
+		}
+		else{
+			soundPlayer.Stop();
+		}
 	}
 }
