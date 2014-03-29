@@ -96,6 +96,7 @@
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\GlowEffectDownsample.shader" />
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\EdgeDetectX.shader" />
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
+     <None Include="Assets\Packs\Into the Fire\Into_the_Fire_ReadMe.txt" />
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\FisheyeShader.shader" />
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\FPS\Scripts\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
