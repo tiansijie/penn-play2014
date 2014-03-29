@@ -6,12 +6,9 @@ public class FireObjScript : MonoBehaviour {
 
 	public GameObject smallFire;
 	public float fireTime = 10f;
-	public int fireReduceScalar = 4;
-	public float reduceTimer = 3f;
 
 	private bool isLit = false;
 	private GameObject insSmallFire;
-
 
 	// Use this for initialization
 	void Start () {
