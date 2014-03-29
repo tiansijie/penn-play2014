@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireObjScript : MonoBehaviour {
+public class FireOutCoreScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+	
 	}
 
-	void OnCollisionEnter(Collision collision)
+	void OnParticleCollision(GameObject other)
 	{
-		Collider collider = collision.collider;
+		if(other.tag == "fireobject")
+		{
+			print("Hahahahaaha");
+		}
 	}
-
-
+	
 	// Update is called once per frame
 	void Update () {
 	
