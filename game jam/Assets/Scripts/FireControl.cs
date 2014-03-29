@@ -7,44 +7,72 @@ public class FireControl : MonoBehaviour {
 	
 	private GameObject fireInstance;
 	private Component[] particleEmitters;
-	private Component[] lightSources;
+	//private Component[] lightSources;
+	private GameObject[] lightSources;
 
 	private float lightInterval;
+	private int lightCount = 10;
+	private float lightSpacing = 1.0f;
 
-	private float emitTimer;
-	private float stopTimer;
+	private float emitTimer = 0;
+	private float stopTimer = 0;
 
+	private int nextLightToActivate = 0;
+	private int nextLightToDeactivate = 0;
+
+<<<<<<< HEAD
 	private int nextLightToActivate;
 	private int nextLightToDeactivate;
 	public AudioSource soundGunStartPlayer;
 	public AudioSource soundGunKeepShotting;
+=======
+	public AudioSource soundPlayer;
+	
+>>>>>>> 8f673d161fab901e4c8196115f399f1c274ee50f
 
 	// Use this for initialization
 	void Start () {
+
 		fireInstance = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
 		particleEmitters = fireInstance.transform.gameObject.GetComponentsInChildren<ParticleEmitter>();
-		lightSources = fireInstance.transform.gameObject.GetComponentsInChildren<Light>(); // light sources are already sorted from the nearest one to the furthest
+		lightSources = new GameObject[lightCount];
+
+		for(int i = 0; i < lightCount; ++i)
+		{
+			GameObject lightGameObject = new GameObject("Flame Light");
+			lightGameObject.transform.parent = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).transform;
+			lightGameObject.transform.localPosition = new Vector3(0, 0, i*lightSpacing);
+			lightGameObject.AddComponent<Light>();
+			lightGameObject.light.color = new Color(255, 156, 48);
+			lightGameObject.light.color /= 255;
+			lightGameObject.light.range = 10;
+			lightGameObject.SetActive(false);
+			lightSources[i] = lightGameObject;
+		}	
 
 		toggleActiveFire(false);
-		foreach(Light lightSource in lightSources) lightSource.enabled = false;
 
-		//lightSources[3].light.enabled = true;
-
-		lightInterval = 3.0f / particleEmitters[0].particleEmitter.localVelocity.y;
-		emitTimer = 0;
-		stopTimer = 0;
-		nextLightToActivate = 0;
-		nextLightToDeactivate = 0;
+		lightInterval = lightSpacing / particleEmitters[0].particleEmitter.localVelocity.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+//		timer += Time.deltaTime;
+//		if(timer > 1.0)
+//		{
+//
+//			timer = 0;
+//			lightSources[ind].light.enabled = true;
+//			ind++;
+//		}
+
 		if(nextLightToActivate != 0)
 		{
 			emitTimer += Time.deltaTime;
 			if(Mathf.Abs(emitTimer - lightInterval) < 0.01)
 			{
-				lightSources[nextLightToActivate].light.enabled = true;
+				lightSources[nextLightToActivate].SetActive(true);
 				nextLightToActivate = (nextLightToActivate + 1) % lightSources.Length;
 				emitTimer = 0;
 			}
@@ -54,7 +82,7 @@ public class FireControl : MonoBehaviour {
 			stopTimer += Time.deltaTime;
 			if(Mathf.Abs(stopTimer - lightInterval) < 0.01)
 			{
-				lightSources[nextLightToDeactivate].light.enabled = false;
+				lightSources[nextLightToDeactivate].SetActive(false);
 				nextLightToDeactivate = (nextLightToDeactivate + 1) % lightSources.Length;
 				stopTimer = 0;
 			}
@@ -63,16 +91,19 @@ public class FireControl : MonoBehaviour {
 		{
 			toggleActiveFire(true);
 			emitTimer = 0;
-			lightSources[nextLightToActivate].light.enabled = true;
+			lightSources[nextLightToActivate].SetActive(true);
 			nextLightToActivate = (nextLightToActivate + 1) % lightSources.Length;
 		}
 		if(Input.GetButtonUp("Fire1"))
 		{
 			toggleActiveFire(false);
 			stopTimer = 0;
-			lightSources[nextLightToDeactivate].light.enabled = false;
+			lightSources[nextLightToDeactivate].SetActive(false);
 			nextLightToDeactivate = (nextLightToDeactivate + 1) % lightSources.Length;
 		}
+
+		//print(lightSources[0].light.enabled + " " + lightSources[1].light.enabled + " " + lightSources[2].light.enabled + " " + lightSources[3].light.enabled + " " + lightSources[4].light.enabled
+		  //    +" " + lightSources[5].light.enabled + " " + lightSources[6].light.enabled + " " + lightSources[7].light.enabled + " " + lightSources[8].light.enabled + " " + lightSources[9].light.enabled);
 
 	}
 
