@@ -19,9 +19,7 @@ public class FireControl : MonoBehaviour {
 
 	private int nextLightToActivate = 0;
 	private int nextLightToDeactivate = 0;
-
-
-	public AudioSource soundGunStartPlayer;
+	
 	public AudioSource soundGunKeepShotting;
 
 
