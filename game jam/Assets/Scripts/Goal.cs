@@ -14,13 +14,12 @@ public class Goal : MonoBehaviour {
 	void OnTriggerEnter(Collider collider)
 	{
 		if(collider.tag == "Player"){
-
 			finalLight.enabled = true;
-			Invoke("LoadScene", 20.0f);
+			Invoke("LoadScene", 13.0f);
 		}
 	}
 
-	void LocadScene()
+	void LoadScene()
 	{
 		Application.LoadLevel(2);
 	}
