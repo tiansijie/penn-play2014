@@ -1,15 +1,13 @@
 fileFormatVersion: 2
-guid: cd999819420bc40e8b0a08836f21a54a
+guid: 4ff52f18639c34cd185f341274f978c9
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pCube12
     400000: //RootNode
-    400002: pCube12
-    2300000: pCube12
-    3300000: pCube12
-    4300000: pCube12
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: damagedDoor
     9500000: //RootNode
   materials:
     importMaterials: 1
