@@ -7,7 +7,12 @@ public class FireControl : MonoBehaviour {
 	public GameObject lightBallPrefab;
 	public float lightBallCD;
 	public AudioSource soundGunKeepShotting;
-	
+	public float fuelCapacity;
+	public float fuelConsumingRate;
+	public float fuelRechargingRate;
+
+	private float fuelLevel;
+	private float fuelDifference;
 	private GameObject fireInstance;
 	private GameObject lightBallInstance;
 	private Component[] particleEmitters;
@@ -19,6 +24,7 @@ public class FireControl : MonoBehaviour {
 
 	private float emitTimer = 0;
 	private float stopTimer = 0;
+	private int lockTimer = 0;
 
 	private int nextLightToActivate = 0;
 	private int nextLightToDeactivate = 0;
@@ -28,6 +34,8 @@ public class FireControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		fuelDifference = fuelRechargingRate;
+		fuelLevel = fuelCapacity;
 		fireInstance = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).gameObject;
 		particleEmitters = fireInstance.transform.gameObject.GetComponentsInChildren<ParticleEmitter>();
 		lightSources = new GameObject[lightCount];
@@ -53,7 +61,21 @@ public class FireControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print(fuelLevel);
+		fuelLevel = fuelLevel + fuelDifference >= fuelCapacity ? fuelCapacity : fuelLevel + fuelDifference;//Mathf.Clamp(fuelLevel + fuelDifference, 0.0f, fuelCapacity);
 
+		if(Input.GetButton("Fire1") && fuelLevel <= 0 && fuelLevel != -100)
+		{
+			toggleActiveFire(false);
+			stopTimer = 0;
+			nextLightToDeactivate = 0;
+			lightSources[nextLightToDeactivate].SetActive(false);
+			nextLightToDeactivate = (nextLightToDeactivate + 1) % lightSources.Length;
+			fuelLevel = -100;
+			fuelDifference = 0;
+		}
+
+		//lockTimer--;
 		if(nextLightToActivate != 0)
 		{
 			emitTimer += Time.deltaTime;
@@ -74,19 +96,32 @@ public class FireControl : MonoBehaviour {
 				stopTimer = 0;
 			}
 		}
-		if(Input.GetButtonDown("Fire1"))
+		if(Input.GetButtonDown("Fire1"))// || Input.GetButton("Fire1"))&& fuelLevel > fuelConsumingRate )
 		{
 			toggleActiveFire(true);
 			emitTimer = 0;
+			//lockTimer = 10;
+			//if(Input.GetButtonDown("Fire1"))
+			//{
+			nextLightToActivate = 0;
+			//}
+			
 			lightSources[nextLightToActivate].SetActive(true);
 			nextLightToActivate = (nextLightToActivate + 1) % lightSources.Length;
+			fuelDifference = -fuelConsumingRate;
 		}
+
 		if(Input.GetButtonUp("Fire1"))
 		{
+			fuelLevel = fuelLevel == -100? 0 : fuelLevel;
 			toggleActiveFire(false);
 			stopTimer = 0;
+			//lockTimer = 15;
+			//if(!Input.GetButtonUp("Fire1"))
+				nextLightToDeactivate = 0;
 			lightSources[nextLightToDeactivate].SetActive(false);
 			nextLightToDeactivate = (nextLightToDeactivate + 1) % lightSources.Length;
+			fuelDifference = fuelRechargingRate;
 		}
 
 		lightBallTimer -= Time.deltaTime;
@@ -99,7 +134,8 @@ public class FireControl : MonoBehaviour {
 			lightBallTimer = 3;
 			Destroy(lightBallInstance, 10);
 		}
-	
+		//print((lightSources[0].activeSelf?1:0) + " " + (lightSources[1].activeSelf?1:0) + " " + (lightSources[2].activeSelf?1:0) + " "+ (lightSources[3].activeSelf?1:0) + " "+ (lightSources[4].activeSelf?1:0) + " "
+		//      + (lightSources[5].activeSelf?1:0) + " "+ (lightSources[6].activeSelf?1:0) + " "+ (lightSources[7].activeSelf?1:0) + " "+ (lightSources[8].activeSelf?1:0) + " "+ (lightSources[9].activeSelf?1:0));
 	}
 
 
