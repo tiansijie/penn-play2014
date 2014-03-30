@@ -16,7 +16,7 @@ public class DoorScirpt : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if(collider.tag == "player")
+		if(collider.tag == "Player")
 		{
 			if(isDoorClosed)
 				isDoorClosed = false;
