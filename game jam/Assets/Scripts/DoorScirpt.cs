@@ -13,16 +13,7 @@ public class DoorScirpt : MonoBehaviour {
 		originalAngle = transform.rotation.eulerAngles;
 		originalAngle.y -= 82f;
 	}
-
-	void OnTriggerEnter(Collider collider)
-	{
-		if(collider.tag == "Player")
-		{
-			if(isDoorClosed)
-				isDoorClosed = false;
-		}
-	}
-
+	
 
 	void DoorIsOpen()
 	{
