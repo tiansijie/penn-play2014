@@ -4,10 +4,13 @@ using System.Collections;
 public class FireControl : MonoBehaviour {
 
 	public GameObject firePrefab;
+	public GameObject lightBallPrefab;
+	public float lightBallCD;
+	public AudioSource soundGunKeepShotting;
 	
 	private GameObject fireInstance;
+	private GameObject lightBallInstance;
 	private Component[] particleEmitters;
-	//private Component[] lightSources;
 	private GameObject[] lightSources;
 
 	private float lightInterval;
@@ -19,9 +22,8 @@ public class FireControl : MonoBehaviour {
 
 	private int nextLightToActivate = 0;
 	private int nextLightToDeactivate = 0;
-	
-	public AudioSource soundGunKeepShotting;
 
+	private float lightBallTimer = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -51,15 +53,6 @@ public class FireControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-//		timer += Time.deltaTime;
-//		if(timer > 1.0)
-//		{
-//
-//			timer = 0;
-//			lightSources[ind].light.enabled = true;
-//			ind++;
-//		}
 
 		if(nextLightToActivate != 0)
 		{
@@ -96,9 +89,17 @@ public class FireControl : MonoBehaviour {
 			nextLightToDeactivate = (nextLightToDeactivate + 1) % lightSources.Length;
 		}
 
-		//print(lightSources[0].light.enabled + " " + lightSources[1].light.enabled + " " + lightSources[2].light.enabled + " " + lightSources[3].light.enabled + " " + lightSources[4].light.enabled
-		  //    +" " + lightSources[5].light.enabled + " " + lightSources[6].light.enabled + " " + lightSources[7].light.enabled + " " + lightSources[8].light.enabled + " " + lightSources[9].light.enabled);
-
+		lightBallTimer -= Time.deltaTime;
+		if(Input.GetButtonDown("Fire2") && lightBallTimer < 0)
+		{
+			lightBallInstance = Instantiate(lightBallPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			lightBallInstance.transform.position = gameObject.transform.GetChild(1).GetChild(0).GetChild(0).transform.position;
+			Vector3 initialForce = 2000 * gameObject.transform.GetChild(1).GetChild(0).GetChild(0).transform.forward;
+			lightBallInstance.rigidbody.AddForce(initialForce);
+			lightBallTimer = 3;
+			Destroy(lightBallInstance, 10);
+		}
+	
 	}
 
 
