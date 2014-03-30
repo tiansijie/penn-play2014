@@ -5,7 +5,7 @@ public class GUI_TimeScript : MonoBehaviour {
 	public GlobalScript gScript;
 	// Use this for initialization
 	void Start () {
-		gScript = GameObject.Find ("Global").GetComponent<GlobalScript> ();
+		gScript = GameObject.FindGameObjectWithTag("Global").GetComponent<GlobalScript> ();
 	}
 	
 	// Update is called once per frame
