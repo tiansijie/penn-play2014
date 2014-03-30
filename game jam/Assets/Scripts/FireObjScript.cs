@@ -11,10 +11,10 @@ public class FireObjScript : MonoBehaviour {
 	private bool isLit = false;
 	private GameObject insSmallFire;
 
-	GhostShadowScript ghostshaowscript;
+	//GhostShadowScript ghostshaowscript;
 	// Use this for initialization
 	void Start () {
-		ghostshaowscript = this.transform.GetChild(0).GetComponent<GhostShadowScript>();
+		//ghostshaowscript = this.transform.GetChild(0).GetComponent<GhostShadowScript>();
 	}
 
 	void OnParticleCollision(GameObject other)
@@ -23,7 +23,7 @@ public class FireObjScript : MonoBehaviour {
 		{
 			//print ("fire up");
 			if(!isLit){
-				ghostshaowscript.setActivate(true);
+				//ghostshaowscript.setActivate(true);
 				insSmallFire = Instantiate(smallFire, this.transform.position, Quaternion.identity) as GameObject;
 				Invoke("StopEmitter", fireTime - 2f);
 				Invoke("Stop", fireTime);
@@ -37,7 +37,7 @@ public class FireObjScript : MonoBehaviour {
 
 	void Stop()
 	{
-		ghostshaowscript.setActivate(false);
+		//ghostshaowscript.setActivate(false);
 		this.gameObject.renderer.material = burnedBox;
 	}
 
