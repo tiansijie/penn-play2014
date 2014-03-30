@@ -21,4 +21,6 @@ Temp
 *.sln
 *.userprefs
 * *.sln
+*.exe
+alpha0.1_Data
 ####
