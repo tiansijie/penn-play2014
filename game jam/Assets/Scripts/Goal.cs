@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Goal : MonoBehaviour {
 
+
+	public GameObject FinalDirLight;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,8 +12,11 @@ public class Goal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if(collider.tag == "Player")
-			print("You Win");
+		if(collider.tag == "Player"){
+			Light finalLight = FinalDirLight.GetComponent<Light>();
+			finalLight.enabled = true;
+			//print("You Win");
+		}
 	}
 	
 	// Update is called once per frame
