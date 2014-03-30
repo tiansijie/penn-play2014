@@ -121,16 +121,16 @@ public function Update() : void {
 			canjump = true;
 		}  
         //Press Space to Jump
-        if (canjump && Input.GetButton ("Jump")) 
-        {
-            f_verticalSpeed = jumpSpeed;
-            b_isJumping = true;
-            //animator.SetBool("dojump", true); 
-        }
-        else
-        {
-        	//animator.SetBool("dojump", false);
-        }
+//        if (canjump && Input.GetButton ("Jump")) 
+//        {
+//            f_verticalSpeed = jumpSpeed;
+//            b_isJumping = true;
+//            //animator.SetBool("dojump", true); 
+//        }
+//        else
+//        {
+//        	//animator.SetBool("dojump", false);
+//        }
 	}
 	// Apply gravity
 	if (IsGrounded()) {
