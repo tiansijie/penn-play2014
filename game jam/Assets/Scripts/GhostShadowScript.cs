@@ -6,7 +6,7 @@ public class GhostShadowScript : MonoBehaviour {
 	private Vector3 parentLocation;
 	private Vector3 ranDirection;
 	private bool isActivate = false;
-
+	public GUIStyle startButton;
 	public float shadowSpeed = 1f;
 	// Use this for initialization
 	void Start () {
@@ -51,5 +51,12 @@ public class GhostShadowScript : MonoBehaviour {
 			this.renderer.enabled = false;
 		}
 
+	}
+	void OnGUI()
+	{
+		if(GUI.Button(new Rect(500,500,384,166),"",startButton))
+		{
+			print ("aaa");
+		}
 	}
 }
