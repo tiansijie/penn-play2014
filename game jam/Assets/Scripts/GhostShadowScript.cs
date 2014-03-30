@@ -6,14 +6,14 @@ public class GhostShadowScript : MonoBehaviour {
 	private Vector3 parentLocation;
 	private Vector3 ranDirection;
 	private bool isActivate = false;
-	public GUIStyle startButton;
+
 	public float shadowSpeed = 1f;
 	// Use this for initialization
 	void Start () {
-		parentLocation = this.transform.parent.transform.position;
-		Vector3 objPos = new Vector3(parentLocation.x, 0.1f, parentLocation.z);
-		this.transform.position = objPos;
-		getRandomDirection();
+//		parentLocation = this.transform.parent.transform.position;
+//		Vector3 objPos = new Vector3(parentLocation.x, 0.1f, parentLocation.z);
+//		this.transform.position = objPos;
+//		getRandomDirection();
 	}
 
 	public void setActivate(bool active)
@@ -52,4 +52,13 @@ public class GhostShadowScript : MonoBehaviour {
 //		}
 
 	}
+
+//	void OnGUI()
+//	{
+//		if(GUI.Button(new Rect(500,500,384,166),"",startButton))
+//		{
+//			print ("aaa");
+//		}
+//	}
+
 }

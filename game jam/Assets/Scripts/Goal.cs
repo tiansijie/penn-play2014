@@ -15,7 +15,11 @@ public class Goal : MonoBehaviour {
 	{
 		if(collider.tag == "Player"){
 			finalLight.enabled = true;
+<<<<<<< HEAD
 			Invoke("LoadScene", 13.0f);
+=======
+			Invoke("LoadScene", 10.0f);
+>>>>>>> 0885a8310881eba123f4ced1a3ef2e47195499dd
 		}
 	}
 
