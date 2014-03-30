@@ -5,6 +5,13 @@ function Awake () {
 	motor = GetComponent(CharacterMotor);
 }
 
+function OnControllerColliderHit (hit : ControllerColliderHit) {
+	var collider = hit.collider;
+	if(collider.tag == "Door")
+  		hit.transform.SendMessage("DoorIsOpen", SendMessageOptions.DontRequireReceiver);
+}
+
+
 // Update is called once per frame
 function Update () {
 	// Get the input vector from keyboard or analog stick
