@@ -52,7 +52,7 @@ public class GhostShadowScript : MonoBehaviour {
 //		}
 
 	}
-<<<<<<< HEAD
+
 //	void OnGUI()
 //	{
 //		if(GUI.Button(new Rect(500,500,384,166),"",startButton))
@@ -60,6 +60,5 @@ public class GhostShadowScript : MonoBehaviour {
 //			print ("aaa");
 //		}
 //	}
-=======
->>>>>>> 34787aa4288b5607757191f6e5ea727c34bdb6eb
+
 }

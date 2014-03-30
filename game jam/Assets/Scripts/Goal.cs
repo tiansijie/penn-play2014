@@ -16,11 +16,11 @@ public class Goal : MonoBehaviour {
 		if(collider.tag == "Player"){
 
 			finalLight.enabled = true;
-			Invoke("LoadScene", 20.0f);
+			Invoke("LoadScene", 10.0f);
 		}
 	}
 
-	void LocadScene()
+	void LoadScene()
 	{
 		Application.LoadLevel(2);
 	}
