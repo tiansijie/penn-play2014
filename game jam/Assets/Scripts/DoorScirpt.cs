@@ -23,6 +23,13 @@ public class DoorScirpt : MonoBehaviour {
 		}
 	}
 
+
+	void DoorIsOpen()
+	{
+		if(isDoorClosed)
+			isDoorClosed = false;
+	}
+
 	
 	// Update is called once per frame
 	void Update () {
