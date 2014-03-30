@@ -1,0 +1,3 @@
+One day, the player wakes up in a dark room, and found himself trapped in an abandonned building fulfilled by ghosts. All he can rely on is a fire projector which has strong power
+but little fuel (left-click), and several bouncing balls which can give out several seconds of flashing light (right-click), he needs to explore the building ("WASD" to move and "Space" to jump)
+and find the only room with electricity to recharge his mobile phone, and call for help.
